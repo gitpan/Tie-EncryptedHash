@@ -29,14 +29,24 @@ sub debug {
     print "$sub   " . (shift) . "\n";
 }
 
+# sub new {
+#   my ($class,%args) = @_;
+#   my %self = (); tie %self, $class;
+# 	my $self = bless \%self, $class;
+#   $self->{__password} = $args{__password} if $args{__password};
+#   $self->{__cipher} = $args{__cipher} || qq{Blowfish};
+# 	return $self;
+# }
+
 sub new {
-	my ($class,%args) = @_;
-    my %self = (); tie %self, $class;
-	my $self = bless \%self, $class;
+    my ($class,%args) = @_;
+    my $self = {}; tie %$self, $class;
+    bless $self, $class;
     $self->{__password} = $args{__password} if $args{__password};
     $self->{__cipher} = $args{__cipher} || qq{Blowfish};
-	return $self;
+    return $self;
 }
+
 
 sub _access {
 
@@ -141,10 +151,10 @@ sub verify { # ($self, $key)
     return $ptext if $ptext;
 }
    
-sub each	{ each %{$_[0]} }
-sub keys	{ keys %{$_[0]} }
-sub values	{ values %{$_[0]} }
-sub exists	{ exists $_[0]->{$_[1]} }
+sub each	{ CORE::each %{$_[0]} }
+sub keys	{ CORE::keys %{$_[0]} }
+sub values	{ CORE::values %{$_[0]} }
+sub exists	{ CORE::exists $_[0]->{$_[1]} }
 
 sub TIEHASH	# ($class, @args)
 {
@@ -179,7 +189,7 @@ sub CLEAR	# ($self)
 {
 	my ($self) = @_;
 	return undef if grep { ! $self->verify($_) } 
-                    grep { ! /__/ } keys %{$self};
+                    grep { ! /__/ } CORE::keys %{$self};
 	%{$self} = ();
 }
 
@@ -193,7 +203,7 @@ sub EXISTS	# ($self, $key)
 sub FIRSTKEY	# ($self)
 {
 	my ($self) = @_;
-	keys %{$self};
+	CORE::keys %{$self};
 	goto &NEXTKEY;
 }
 
@@ -201,7 +211,7 @@ sub NEXTKEY	# ($self)
 {
 	my $self = $_[0]; my $key;
 	my @context = (caller)[0..1];
-	while (defined($key = each %{$self})) {
+	while (defined($key = CORE::each %{$self})) {
 		last if eval { _access($self,$key,@context) }
 	}
 	return $key;
