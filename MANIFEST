@@ -1,0 +1,13 @@
+Makefile.PL
+lib/Tie/EncryptedHash.pm
+MANIFEST
+TODO
+README.html
+Changes
+t/assignopaque.t
+t/construction.t
+t/emptysubclass.t
+t/hide.t
+t/opertations.t
+t/ref.t
+t/reforgy.t
