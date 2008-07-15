@@ -10,6 +10,7 @@ use lib '../lib';
 use lib 'lib';
 
 use Tie::EncryptedHash; 
+no warnings;
 print "1..4\n";
 my %h = ();
 tie %h, Tie::EncryptedHash, 'Blacksun';

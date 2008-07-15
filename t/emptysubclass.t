@@ -16,6 +16,7 @@ use Tie::EncryptedHash;
 
 package main;
 use Data::Dumper;
+no warnings;
 
 %v = ( password => 'Doorknob', 
        password_wrong => 'Bweoo',

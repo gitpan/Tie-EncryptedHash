@@ -10,6 +10,7 @@ use lib '../lib';
 use lib 'lib';
 use Tie::EncryptedHash;
 use Data::Dumper;
+no warnings;
 
 print "1..15\n";
 my %h = ();

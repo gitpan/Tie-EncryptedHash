@@ -8,6 +8,7 @@
 
 use lib '../lib';
 use lib 'lib';
+no warnings;
 
 use Tie::EncryptedHash;
 use Data::Dumper qw(DumperX);
@@ -30,9 +31,9 @@ for ( 1..50 ) {
     } elsif ( $rnd == 3 ) { 
         $h{ralpha()}->[rnum()] = { ralpha() => [1..rnum()] }
     } elsif ( $rnd == 4 ) { 
-        $h{ralpha()}->[rnum()]->{ralpha()} = { ralpha() => ralpha() };
+        $h{ralpha()}->[rnum()]->{'HASH_' . ralpha()} = { ralpha() => ralpha() };
     } elsif ( $rnd == 5 ) { 
-        $h{ralpha()}->[rnum()]->{ralpha()} = ralpha ();
+        $h{ralpha()}->[rnum()]->{'ARRAY_' . ralpha()} = ralpha ();
     } elsif ( $rnd == 6 ) { 
         for ( 0 .. rnum() ) {
          $h{ralpha()}->[rnum()]->{ralpha()}->[$_] = { ralpha() => [1..rnum()] };

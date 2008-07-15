@@ -11,3 +11,4 @@ t/hide.t
 t/opertations.t
 t/ref.t
 t/reforgy.t
+META.yml                                 Module meta-data (added by MakeMaker)

@@ -446,6 +446,6 @@ Vipul Ved Prakash <mail@vipul.net>
 
 =head1 LICENSE 
 
-Artistic.
+This module is distributed under the same license as Perl itself.
 
 
