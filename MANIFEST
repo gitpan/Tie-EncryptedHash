@@ -1,6 +1,7 @@
 Makefile.PL
 lib/Tie/EncryptedHash.pm
 MANIFEST
+LICENSE
 TODO
 README.html
 Changes
